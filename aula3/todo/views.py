@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Todo
 
 class TodoListView(ListView):
@@ -18,3 +18,8 @@ class TodoUpdateView(UpdateView):
     model = Todo 
     fields = ["title", "deadline"] 
     success_url = reverse_lazy("todo_list")
+
+class TodoDeleteView(DeleteView):
+    model = Todo
+    success_url = reverse_lazy("todo_list")
+    

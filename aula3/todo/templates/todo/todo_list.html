@@ -35,6 +35,9 @@
         padding: 10px;
         border-radius: 4px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
       .link {
         display: block;
@@ -56,7 +59,28 @@
       <h1>Todo List</h1>
       <ul>
         {% for todo in todos %}
-        <li>{{ todo.title }}</li>
+        <li>
+          {{ todo.title }}
+          <form
+            action="{% url 'todo_delete' todo.id %}"
+            method="POST"
+            style="display: inline"
+          >
+            {% csrf_token %}
+            <button
+              type="submit"
+              class="btn btn-danger"
+              style="
+                border: none;
+                background: none;
+                color: red;
+                cursor: pointer;
+              "
+            >
+              Excluir
+            </button>
+          </form>
+        </li>
         {% endfor %}
       </ul>
       <div class="link">
